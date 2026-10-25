@@ -1,0 +1,34 @@
+appId: it.danilo.NOMEAPP
+productName: NomeApp
+directories:
+  buildResources: build
+  output: dist
+files:
+  - out/main/**
+  - out/preload/**
+  - out/renderer/**
+  - package.json
+# File che devono restare fuori dall'asar (es. uno script lanciato da Node esterno):
+# extraResources:
+#   - from: out/qualcosa
+#     to: qualcosa
+asar: true
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+# Si installa come un'app normale: per utente, senza permessi admin, collegamenti su desktop e Start.
+nsis:
+  oneClick: true
+  perMachine: false
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: NomeApp
+  runAfterFinish: true
+  deleteAppDataOnUninstall: false
+mac:
+  target: dmg
+  category: public.app-category.productivity
+linux:
+  target: AppImage
+  category: Utility
